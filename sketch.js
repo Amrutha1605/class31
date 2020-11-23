@@ -8,6 +8,27 @@ var box1, pig1,pig3;
 var backgroundImg,platform;
 var bird, slingshot;
 
+var gamestate="onsling";
+
+var arr1=[1,2,3,4];
+console.log(arr1);
+
+var arr2=["amrutha",12,true];
+console.log(arr2);
+
+var arr3=[[1,2],[2,3],[3,4],[4,5]];
+console.log(arr3);
+
+console.log(arr3[0]);
+console.log(arr3[0][0]);
+console.log(arr3[1][1])
+
+arr3.push("hai");
+console.log(arr3);
+arr3.pop();
+console.log(arr3);
+
+
 
 function preload() {
     backgroundImg = loadImage("sprites/bg.png");
@@ -41,6 +62,10 @@ function setup(){
 
     //log6 = new Log(230,180,80, PI/2);
     slingshot = new SlingShot(bird.body,{x:200, y:50});
+
+
+
+
 }
 
 function draw(){
@@ -69,16 +94,21 @@ function draw(){
 }
 
 function mouseDragged(){
+    if(gamestate!=="launched"){
+
+    
     Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
+    }
 }
 
 
 function mouseReleased(){
     slingshot.fly();
+    gamestate="launched";
 }
 
 function keyPressed(){
     if(keyCode === 32){
-        slingshot.attach(bird.body);
+        //slingshot.attach(bird.body);
     }
 }
